@@ -8,10 +8,13 @@
 import SwiftUI
 
 struct MonumentView: View {
+    @ObservedObject var locationViewModel = LocationsViewModel()
+
     var body: some View {
-        List (locations) {
+
+        List(locationViewModel.locationsList) {
             location in
-           
+
             HStack {
                 Image(location.imageNames[0]).resizable()
                     .frame(
@@ -30,8 +33,10 @@ struct MonumentView: View {
 
                 }
             }
+        }.onAppear {
+            locationViewModel.fetchAllLocations()
         }
-        
+
     }
 }
 
