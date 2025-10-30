@@ -11,9 +11,16 @@ import SwiftUI
 struct AppOctoberApp: App {
     var body: some Scene {
         WindowGroup {
-            
-            
-            MonumentView()
+            TabView {
+                Tab("Map", systemImage: "mappin.and.ellipse") {
+                    MonumentView()
+                }
+
+                Tab("List", systemImage: "list.bullet.rectangle.fill") {
+                    MapLocations()
+                }
+            }
+
         }
     }
 }

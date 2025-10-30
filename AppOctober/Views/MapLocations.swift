@@ -11,12 +11,21 @@ import SwiftUI
 
 struct MapLocations: View {
 
-    
-    @ObservableObject var locationViewModel = LocationsViewModel()
+    @ObservedObject var locationViewModel = LocationsViewModel()
+
     var body: some View {
-        Map{
-            ForEach(locationViewModel.locationsList)
-        }.onAppear(){
+        VStack {
+            Map {
+                ForEach(locationViewModel.locationsList) { location in
+                    Marker(
+                        location.name,
+                        coordinate: location.coordinates,
+                    )
+
+                }
+            }
+        }
+        .onAppear {
             locationViewModel.fetchAllLocations()
         }
     }
