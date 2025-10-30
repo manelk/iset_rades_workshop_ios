@@ -5,21 +5,19 @@
 //  Created by odc on 30/10/2025.
 //
 
-import Foundation
 import Combine
+import Foundation
 
 class LocationsViewModel: ObservableObject {
-    
+
     @Published var locationsList: [LocationModel]
-    
-    init(){
-        self.locationsList=[]
+
+    init() {
+        self.locationsList = []
     }
-    
-    func fetchAllLocations(){
-        
-        locationsList=locations
+
+    func fetchAllLocations() {
+        locationsList = locations
     }
-    
-    
+
 }

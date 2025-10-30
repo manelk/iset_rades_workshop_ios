@@ -11,7 +11,9 @@ import SwiftUI
 struct AppOctoberApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            
+            
+            MonumentView()
         }
     }
 }
