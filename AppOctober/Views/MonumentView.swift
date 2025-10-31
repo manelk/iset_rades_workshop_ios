@@ -14,10 +14,13 @@ struct MonumentView: View {
         NavigationStack {
             List(locationViewModel.locationsList) {
                 location in
+                
+                // pass the id from the location item selected
                 NavigationLink {
-                    LocationDetailView()
+                   
+                    LocationDetailView(id: location.id)
                 } label: {
-
+                  
                     HStack {
                         Image(location.imageNames[0]).resizable()
                             .frame(
@@ -38,6 +41,8 @@ struct MonumentView: View {
                     }
                 }
             }.onAppear {
+                
+                
                 locationViewModel.fetchAllLocations()
             }
 

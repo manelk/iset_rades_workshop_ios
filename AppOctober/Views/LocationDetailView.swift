@@ -8,9 +8,15 @@
 import SwiftUI
 
 struct LocationDetailView: View {
+    // creation of new id to filter the list
+    var id: UUID
+
+    // call the view model we need it to trigger the function get location by Id
+    @ObservedObject var locationViewModel = LocationsViewModel()
+
     var body: some View {
         VStack(alignment: .leading) {
-            Text("")
+            Text(locationViewModel.locationItem.cityName)
                 .font(.title)
                 .fontWeight(.bold)
             Text("")
@@ -33,9 +39,13 @@ struct LocationDetailView: View {
 
         }
         .padding()
+        .onAppear {
+            locationViewModel.fetchLocationById(id: id)
+        }
     }
 }
 
+/*
 #Preview {
-    LocationDetailView()
-}
+    LocationDetailView(id: "")
+}*/
