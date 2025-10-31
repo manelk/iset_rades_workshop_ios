@@ -20,4 +20,9 @@ class LocationsViewModel: ObservableObject {
         locationsList = locations
     }
 
+    // Create a function to filter the locationsList by id
+    // function will get an id uuid from the list from there we want to filter the list to return one element only by uuid
+    func fetchLocationById(id: UUID) -> LocationModel {
+        return locationsList.filter { $0.id == id }[0]
+    }
 }

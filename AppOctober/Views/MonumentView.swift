@@ -11,30 +11,36 @@ struct MonumentView: View {
     @ObservedObject var locationViewModel = LocationsViewModel()
 
     var body: some View {
+        NavigationStack {
+            List(locationViewModel.locationsList) {
+                location in
+                NavigationLink {
+                    LocationDetailView()
+                } label: {
 
-        List(locationViewModel.locationsList) {
-            location in
+                    HStack {
+                        Image(location.imageNames[0]).resizable()
+                            .frame(
+                                width: 100,
+                                height: 100
+                            )
+                            .cornerRadius(15)
+                        VStack(
+                            alignment:
+                                .leading
+                        ) {
+                            Text(location.cityName).bold()
 
-            HStack {
-                Image(location.imageNames[0]).resizable()
-                    .frame(
-                        width: 100,
-                        height: 100
-                    )
-                    .cornerRadius(15)
-                VStack(
-                    alignment:
-                        .leading
-                ) {
-                    Text(location.cityName).bold()
+                            Text(location.name)
+                                .font(.system(size: 30, weight: .bold))
 
-                    Text(location.name)
-                        .font(.system(size: 30, weight: .bold))
-
+                        }
+                    }
                 }
+            }.onAppear {
+                locationViewModel.fetchAllLocations()
             }
-        }.onAppear {
-            locationViewModel.fetchAllLocations()
+
         }
 
     }
